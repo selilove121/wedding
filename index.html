@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aayu & Lokesh Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0f0f0f;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background: linear-gradient(135deg,#ff758c,#ff7eb3);
+}
+
+.hero h1 {
+  font-size: 42px;
+  animation: fadeUp 1s ease forwards;
+}
+
+.hero p {
+  margin-top:10px;
+  font-size:18px;
+  opacity:0.8;
+}
+
+/* BUTTON */
+.btn {
+  margin-top:20px;
+  padding:12px 25px;
+  border-radius:30px;
+  background:white;
+  color:#ff4d6d;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* SECTION */
+.section {
+  padding:70px 20px;
+  text-align:center;
+}
+
+h2 {
+  margin-bottom:30px;
+  color:#ff758c;
+}
+
+/* CARDS */
+.card {
+  background:#1a1a1a;
+  padding:20px;
+  margin:15px auto;
+  border-radius:15px;
+  max-width:400px;
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:scale(1.05);
+}
+
+/* GALLERY */
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.gallery img {
+  width:100%;
+  border-radius:10px;
+}
+
+/* COUNTDOWN */
+.countdown {
+  font-size:22px;
+  margin-top:15px;
+}
+
+/* MUSIC BUTTON */
+.music {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff4d6d;
+  padding:15px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {opacity:0; transform:translateY(30px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+.fade {
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.6s;
+}
+
+.fade.show {
+  opacity:1;
+  transform:translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Aayu ❤️ Lokesh</h1>
+  <p>We are getting married</p>
+  <div class="countdown" id="countdown"></div>
+  <a href="#events" class="btn">Explore</a>
+</section>
+
+<!-- EVENTS -->
+<section class="section fade" id="events">
+  <h2>Wedding Events</h2>
+
+  <div class="card">
+    <h3>Haldi & Mehndi</h3>
+    <p>18 April 2026 - Morning</p>
+  </div>
+
+  <div class="card">
+    <h3>Wedding Ceremony</h3>
+    <p>19 April 2026</p>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="section fade">
+  <h2>Venue</h2>
+  <div class="card">
+    <p>Rampura, Tehsil Reni</p>
+    <p>Alwar, Rajasthan</p>
+    <a class="btn" href="https://maps.google.com/?q=Rampura Alwar Rajasthan" target="_blank">
+      Open Map
+    </a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section fade">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="https://source.unsplash.com/400x400/?wedding">
+    <img src="https://source.unsplash.com/400x400/?couple">
+    <img src="https://source.unsplash.com/400x400/?love">
+    <img src="https://source.unsplash.com/400x400/?indian wedding">
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="section">
+  <h2>With Love ❤️</h2>
+  <p>Aayu & Lokesh</p>
+</section>
+
+<!-- MUSIC -->
+<div class="music" onclick="toggleMusic()">🔊</div>
+<audio id="bgmusic" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// COUNTDOWN
+const weddingDate = new Date("April 19, 2026").getTime();
+setInterval(()=>{
+  const now = new Date().getTime();
+  const d = weddingDate - now;
+  const days = Math.floor(d/(1000*60*60*24));
+  document.getElementById("countdown").innerHTML = days + " Days Left";
+},1000);
+
+// SCROLL ANIMATION
+const fades = document.querySelectorAll(".fade");
+window.addEventListener("scroll", ()=>{
+  fades.forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight-50){
+      el.classList.add("show");
+    }
+  });
+});
+
+// MUSIC
+function toggleMusic(){
+  const music = document.getElementById("bgmusic");
+  if(music.paused){
+    music.play();
+  } else {
+    music.pause();
+  }
+}
+</script>
+
+</body>
+</html>
