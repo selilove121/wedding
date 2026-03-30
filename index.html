@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Aayu ❤️ Lokesh</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -14,25 +15,61 @@
 body{
 margin:0;
 font-family:Poppins;
-background:#f8f5f2;
+background:#000;
+color:#fff;
 overflow-x:hidden;
+}
+
+/* INTRO */
+.intro{
+position:fixed;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+.intro h1{
+font-family:'Playfair Display';
+font-size:28px;
+margin-bottom:20px;
+}
+.intro button{
+padding:15px 30px;
+border-radius:30px;
+border:none;
+background:#fff;
+}
+
+/* HEARTS */
+.heart{
+position:absolute;
+color:red;
+font-size:20px;
+animation:float 3s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
 }
 
 /* HERO */
 .hero{
 height:100vh;
+background:url('assets/couple.jpg') center/cover;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:linear-gradient(#00000060,#00000060),url('assets/wedding.jpg') center/cover;
-color:white;
 text-align:center;
 }
 
 .names{
 font-family:'Great Vibes';
-font-size:50px;
+font-size:52px;
 }
 
 /* COUNTDOWN */
@@ -42,25 +79,20 @@ gap:15px;
 margin-top:20px;
 }
 .box h1{
-color:#c9a96e;
+font-size:32px;
+color:#ff4d6d;
 }
 
-/* SPLIT SECTION */
-.split{
-margin-bottom:40px;
-}
-
+/* SECTION */
 .split img{
 width:100%;
-height:260px;
+height:250px;
 object-fit:cover;
 transform:scale(1.2);
 opacity:0;
 }
-
 .split .content{
-background:#222;
-color:white;
+background:#111;
 padding:40px;
 text-align:center;
 transform:translateY(80px);
@@ -75,17 +107,21 @@ right:20px;
 background:#ff4d6d;
 padding:15px;
 border-radius:50%;
-color:white;
-font-size:18px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
+<div class="intro" id="intro">
+<h1>You Are Invited 💌</h1>
+<button onclick="start()">Open Now</button>
+</div>
+
 <!-- HERO -->
 <section class="hero">
-<h1 class="names">Aayu ❤️ Lokesh</h1>
+<div class="names">Aayu ❤️ Lokesh</div>
 <p>We are getting married</p>
 
 <div class="countdown">
@@ -96,69 +132,39 @@ font-size:18px;
 </div>
 </section>
 
-<!-- EVENTS -->
+<!-- EVENTS (MERGED) -->
 
 <section class="split">
 <img src="assets/lagan.jpg">
 <div class="content">
-<h2>Lagan Lekhan</h2>
-<p>15 April 2026 • Subah 08:15 baje</p>
+<h2>15 April 2026</h2>
+<p>Lagan Lekhan • Subah 08:15 baje</p>
 </div>
 </section>
 
 <section class="split">
 <img src="assets/tel.jpg">
 <div class="content">
-<h2>Tel Ceremony</h2>
-<p>17 April 2026 • Shubh Muhurat Anusar</p>
+<h2>17 April 2026</h2>
+<p>Tel Ceremony • Shubh Muhurat Anusar</p>
 </div>
 </section>
 
 <section class="split">
 <img src="assets/haldi.jpg">
 <div class="content">
-<h2>Haldi Ceremony</h2>
-<p>18 April 2026 • Subah 10:15 baje</p>
-</div>
-</section>
-
-<section class="split">
-<img src="assets/mehndi.jpg">
-<div class="content">
-<h2>Mehndi Ceremony</h2>
-<p>18 April 2026 • Dopahar 12:15 baje</p>
-</div>
-</section>
-
-<section class="split">
-<img src="assets/sangeet.jpg">
-<div class="content">
-<h2>Mahila Sangeet</h2>
-<p>18 April 2026 • Shaam 05:15 baje</p>
-</div>
-</section>
-
-<section class="split">
-<img src="assets/baraat.jpg">
-<div class="content">
-<h2>Baraat</h2>
-<p>19 April 2026 • Subah 10:15 baje</p>
-</div>
-</section>
-
-<section class="split">
-<img src="assets/reception.jpg">
-<div class="content">
-<h2>Preetibhoj</h2>
-<p>19 April 2026 • Dopahar 12:15 baje se aapke aagman tak</p>
+<h2>18 April 2026</h2>
+<p>Haldi • Mehndi • Mahila Sangeet • Chak</p>
+<p>Subah 10:15 • Dopahar 12:15 • Shaam 05:15</p>
 </div>
 </section>
 
 <section class="split">
 <img src="assets/wedding.jpg">
 <div class="content">
-<h2>Paanigrahan Sanskar</h2>
-<p>19 April 2026 • Raatri Shubh Muhurat Anusar</p>
+<h2>19 April 2026</h2>
+<p>Baraat • Preetibhoj • Vivah Sanskar</p>
+<p>Subah 10:15 • Dopahar 12:15 • Raatri Muhurat</p>
 </div>
 </section>
 
@@ -170,18 +176,32 @@ font-size:18px;
 
 <script>
 
-// COUNTDOWN
-const target=new Date("April 19, 2026 00:00:00").getTime();
+// START
+function start(){
+document.getElementById("intro").style.display="none";
+document.getElementById("music").play();
 
+// HEARTS
+for(let i=0;i<40;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"%";
+h.style.animationDuration=(2+Math.random()*3)+"s";
+document.body.appendChild(h);
+}
+}
+
+// COUNTDOWN
+const target=new Date("April 19, 2026").getTime();
 setInterval(()=>{
 let now=new Date().getTime();
-let diff=target-now;
+let d=target-now;
 
-document.getElementById("d").innerHTML=Math.floor(diff/(1000*60*60*24));
-document.getElementById("h").innerHTML=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-document.getElementById("m").innerHTML=Math.floor((diff%(1000*60*60))/(1000*60));
-document.getElementById("s").innerHTML=Math.floor((diff%(1000*60))/1000);
-
+document.getElementById("d").innerHTML=Math.floor(d/(1000*60*60*24));
+document.getElementById("h").innerHTML=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+document.getElementById("m").innerHTML=Math.floor((d%(1000*60*60))/(1000*60));
+document.getElementById("s").innerHTML=Math.floor((d%(1000*60))/1000);
 },1000);
 
 // MUSIC
@@ -190,25 +210,21 @@ let m=document.getElementById("music");
 m.paused?m.play():m.pause();
 }
 
-// ANIMATION
+// SCROLL ANIMATION
 gsap.registerPlugin(ScrollTrigger);
 
-document.querySelectorAll(".split").forEach(section=>{
-let img=section.querySelector("img");
-let content=section.querySelector(".content");
+document.querySelectorAll(".split").forEach(sec=>{
+let img=sec.querySelector("img");
+let text=sec.querySelector(".content");
 
 gsap.to(img,{
-scrollTrigger:{trigger:section,start:"top 80%"},
-scale:1,
-opacity:1,
-duration:1.5
+scrollTrigger:{trigger:sec,start:"top 80%"},
+scale:1,opacity:1,duration:1.5
 });
 
-gsap.to(content,{
-scrollTrigger:{trigger:section,start:"top 75%"},
-y:0,
-opacity:1,
-duration:1.2
+gsap.to(text,{
+scrollTrigger:{trigger:sec,start:"top 75%"},
+y:0,opacity:1,duration:1.2
 });
 });
 
