@@ -1,0 +1,9 @@
+.split img{
+  transform: scale(1.2);
+  opacity:0;
+}
+
+.split .content{
+  transform: translateY(80px);
+  opacity:0;
+}
