@@ -4,62 +4,215 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aayu ❤️ Lokesh</title>
-<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Poppins;background:#000;color:#fff;overflow-x:hidden}
+
+/* INTRO */
+.intro{
+position:fixed;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+.intro h1{
+font-family:'Playfair Display';
+font-size:32px;
+margin-bottom:20px;
+}
+.intro button{
+padding:15px 30px;
+border-radius:30px;
+border:none;
+background:#fff;
+color:#000;
+font-weight:bold;
+}
+
+/* VIDEO BG */
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
+opacity:.5;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+.hero h1{
+font-size:42px;
+font-family:'Playfair Display';
+}
+
+/* SECTIONS */
+.section{
+padding:100px 20px;
+text-align:center;
+}
+.card{
+margin:20px auto;
+padding:25px;
+max-width:400px;
+border-radius:20px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+box-shadow:0 0 40px rgba(255,0,120,.4);
+}
+
+/* GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+.gallery img{
+width:100%;
+border-radius:12px;
+}
+
+/* COUNTDOWN */
+.count{
+font-size:20px;
+margin-top:10px;
+}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(60px);}
+
+/* MUSIC BTN */
+.music{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#ff4d6d;
+padding:15px;
+border-radius:50%;
+}
+</style>
 </head>
 
 <body>
 
-<!-- OPEN SCREEN -->
-<div class="intro">
-  <h1>You Are Invited 💌</h1>
-  <button onclick="enterSite()">Enter</button>
+<!-- INTRO -->
+<div class="intro" id="intro">
+<h1>You Are Invited 💌</h1>
+<button onclick="start()">Open Invitation</button>
 </div>
 
 <!-- VIDEO -->
-<video autoplay muted loop class="bg-video">
-  <source src="assets/video.mp4" type="video/mp4">
+<video class="bg" autoplay muted loop>
+<source src="assets/video.mp4" type="video/mp4">
 </video>
 
-<!-- MAIN -->
-<div class="main">
+<!-- HERO -->
+<section class="hero">
+<div>
+<h1>Aayu ❤️ Lokesh</h1>
+<p>We are getting married</p>
+<div class="count" id="countdown"></div>
+</div>
+</section>
 
-  <section class="hero">
-    <h1>Aayu ❤️ Lokesh</h1>
-    <p>We are getting married</p>
-    <div id="countdown"></div>
-  </section>
+<!-- EVENTS -->
+<section class="section fade">
+<h2>Wedding Events</h2>
 
-  <section class="events">
-    <h2>Wedding Events</h2>
-
-    <div class="card">
-      Haldi & Mehndi<br>18 April 2026
-    </div>
-
-    <div class="card">
-      Wedding Ceremony<br>19 April 2026
-    </div>
-  </section>
-
-  <section class="gallery">
-    <h2>Our Story</h2>
-    <img src="assets/couple1.jpg">
-    <img src="assets/couple2.jpg">
-  </section>
-
-  <section class="venue">
-    <h2>Venue</h2>
-    <div class="card">
-      Rampura, Reni, Alwar<br><br>
-      <a href="https://maps.google.com/?q=Rampura Alwar">Open Map</a>
-    </div>
-  </section>
-
+<div class="card">
+Haldi & Mehndi<br>18 April 2026
 </div>
 
-<!-- MUSIC -->
-<audio id="music" src="assets/music.mp3" loop></audio>
+<div class="card">
+Wedding Ceremony<br>19 April 2026
+</div>
 
-<script src="script.js"></script>
+</section>
+
+<!-- STORY -->
+<section class="section fade">
+<h2>Our Story</h2>
+<p>Two souls, one journey ❤️</p>
+</section>
+
+<!-- GALLERY -->
+<section class="section fade">
+<h2>Moments</h2>
+<div class="gallery">
+<img src="assets/couple1.jpg">
+<img src="assets/couple2.jpg">
+<img src="assets/couple3.jpg">
+<img src="assets/couple4.jpg">
+</div>
+</section>
+
+<!-- VENUE -->
+<section class="section fade">
+<h2>Venue</h2>
+<div class="card">
+Rampura, Reni, Alwar<br><br>
+<a href="https://maps.google.com/?q=Rampura Alwar" target="_blank">Open Map</a>
+</div>
+</section>
+
+<!-- MUSIC -->
+<div class="music" onclick="toggleMusic()">🎵</div>
+<audio id="music" loop>
+<source src="assets/music.mp3">
+</audio>
+
+<script>
+// START
+function start(){
+document.getElementById("intro").style.display="none";
+document.getElementById("music").play();
+}
+
+// COUNTDOWN
+const target=new Date("April 19, 2026").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let d=target-now;
+let days=Math.floor(d/(1000*60*60*24));
+let hours=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+document.getElementById("countdown").innerHTML=days+" Days "+hours+" Hrs Left";
+},1000);
+
+// MUSIC
+function toggleMusic(){
+let m=document.getElementById("music");
+m.paused?m.play():m.pause();
+}
+
+// GSAP
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray(".fade").forEach(el=>{
+gsap.to(el,{
+scrollTrigger:{trigger:el,start:"top 80%"},
+opacity:1,
+y:0,
+duration:1
+});
+});
+</script>
+
 </body>
 </html>
